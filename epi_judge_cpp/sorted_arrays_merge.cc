@@ -4,7 +4,23 @@
 using std::vector;
 vector<int> MergeSortedArrays(const vector<vector<int>>& sorted_arrays) {
   // TODO - you fill in here.
-  return {};
+    vector<int> sortedList;
+    std::priority_queue<int, vector<int>, std::greater<int>> p_queue;
+    for(auto arr : sorted_arrays)
+    {
+	    for(auto element : arr)
+	    {
+            p_queue.emplace(element);
+
+	    }
+    }
+    while(!p_queue.empty())
+    {
+        sortedList.push_back(p_queue.top());
+        p_queue.pop();
+    }
+
+  return sortedList;
 }
 
 int main(int argc, char* argv[]) {
