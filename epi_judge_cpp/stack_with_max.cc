@@ -6,21 +6,31 @@
 using std::length_error;
 
 class Stack {
+private:
+    std::vector<int> values;
+    std::vector<int> maxValues;
  public:
   bool Empty() const {
     // TODO - you fill in here.
-    return true;
+    return values.empty();
   }
   int Max() const {
     // TODO - you fill in here.
-    return 0;
+    return maxValues.back();
   }
   int Pop() {
     // TODO - you fill in here.
-    return 0;
+      int lastVal = values.back();
+      values.pop_back();
+      maxValues.pop_back();
+  	return lastVal;
+    
   }
   void Push(int x) {
     // TODO - you fill in here.
+      int maxVal = !Empty() && Max() > x ? Max() : x;
+      maxValues.push_back(maxVal);
+      values.push_back(x);
     return;
   }
 };
