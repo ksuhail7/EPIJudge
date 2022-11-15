@@ -10,9 +10,26 @@ using std::array;
 using std::stack;
 using std::vector;
 const int kNumPegs = 3;
+
+// P1: 1 - n (n is the biggest ring)
+// P2: {}
+// P3: {}
+
+// transfer 1 -> (n-1) to P3 via P2
+// transfer n from P1 -> P2
+// transfer 1 -> (n-1) from P3 to P2 via P1
+vector<vector<int>> moveRings(int rings, int from, int to, int intermediate) {
+    if(rings < 1) return {};
+    vector<vector<int>> moves;
+    vector<vector<int>> movesFromToInter = moveRings(rings - 1, from, intermediate, to);
+    moves.insert(moves.end(), movesFromToInter.begin(), movesFromToInter.end());
+    moves.push_back({from-1, to-1});
+    auto movesFromInterToTo = moveRings(rings - 1, intermediate, to, from);
+    moves.insert(moves.end(), movesFromInterToTo.begin(), movesFromInterToTo.end());
+    return moves;
+}
 vector<vector<int>> ComputeTowerHanoi(int num_rings) {
-  // TODO - you fill in here.
-  return {};
+    return moveRings(num_rings, 1, 2, 3);
 }
 void ComputeTowerHanoiWrapper(TimedExecutor& executor, int num_rings) {
   array<stack<int>, kNumPegs> pegs;

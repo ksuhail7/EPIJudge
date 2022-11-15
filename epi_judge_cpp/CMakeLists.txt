@@ -230,3 +230,9 @@ add_executable(two_sum two_sum.cc)
 add_executable(uniform_random_number uniform_random_number.cc)
 add_executable(valid_ip_addresses valid_ip_addresses.cc)
 add_executable(zip_list zip_list.cc)
+
+
+# Cracking the coding interviews
+
+## Chapter 1
+add_executable(UniqueStr1_1 cracking_coding_interview/UniqueString1_1.cpp)
